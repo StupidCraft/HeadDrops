@@ -49,10 +49,15 @@ public final class HeadDropsListeners implements Listener
                 configuration.getStringList(headType.getItemPath() + ".lore")));
         Bukkit.getPluginManager().callEvent(headDropEvent);
         if (headDropEvent.isCancelled()) return;
-        if (configuration.getBoolean("transport_to_killer_inventory") && headType == HeadDropType.SLAIN)
-            killer.getInventory().addItem(headDropEvent.getVictimHead());
-        else
+        if (configuration.getBoolean("transport_to_killer_inventory") && headType == HeadDropType.SLAIN) {
+            if (killer.getInventory().firstEmpty() != -1) {
+                killer.getInventory().addItem(headDropEvent.getVictimHead());
+            } else {
+                victim.getWorld().dropItemNaturally(victim.getLocation(), headDropEvent.getVictimHead());
+            }
+        } else {
             event.getDrops().add(headDropEvent.getVictimHead());
+        }
     }
 
     @EventHandler
