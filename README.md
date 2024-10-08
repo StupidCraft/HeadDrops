@@ -1,22 +1,21 @@
 # HeadDrops
 
-### Important Note
-__As of March 3rd, 2024, this repository has been archived and will not receive more updates.__  I don't have time to put into this project currently, but I encourage anybody that's adamant about fixing it to fork it and make it better! 
-
-HeadDrops is a server plugin made for Spigot servers running versions 1.8.8 - 1.18.2.  The plugin alters the player experience by allowing players on the server to drop their heads when they die.
+This fork of HeadDrops is updated to support Minecraft 1.21+. Previous versions of Minecraft (1.8.8 - 1.18.2) are no
+longer supported in this version. The plugin alters the player experience by allowing players on the server to drop
+their heads when they die.
 
 ## Building from Source
 
 To build the project, you will need:
 
 - [Git](https://git-scm.com/)
-- A compatible [JDK](https://www.oracle.com/java/technologies/downloads/) for the server version you are running
+- [Java 21](https://www.oracle.com/uk/java/technologies/downloads/) or higher
 - [Maven](https://maven.apache.org/) (with environment variables set)
 
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/evancolewright/HeadDrops.git
+   git clone https://github.com/StupidCraft/HeadDrops.git
    ```
 
 2. From the root directory of the cloned source code, run:
@@ -31,23 +30,19 @@ To build the project, you will need:
 
 ## API
 
-The plugin contains a custom event that you can hook into that allows you alter the default behavior of the plugin from your own plugin.  Below is an example of how you can make all head drops be pumpkins.
+The plugin contains a custom event that you can hook into that allows you alter the default behavior of the plugin from
+your own plugin. Below is an example of how you can make all head drops be pumpkins.
 
 ```
 @EventHandler
-public void onHeadDropped(HeadDropEvent event)
-{
+public void onHeadDropped(HeadDropEvent event) {
     // Get the head that is supposed to be dropped
     ItemStack originalHead = event.getHeadDrop();
-	
+
     // Implement your changes... For example, maybe it's Halloween, and you want all head drops to be a pumpkin head
-    event.setHeadDrop(new ItemStack(Material.PUMPKIN));    
+    event.setHeadDrop(new ItemStack(Material.PUMPKIN));
 }
 ```
-
-## Additional Information
-
-For more information on this plugin, please refer to the [official plugin page](https://www.spigotmc.org/resources/headdrops-1-8-1-18.15964/).
 
 ## License
 

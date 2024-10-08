@@ -38,7 +38,6 @@ public final class HeadDropsListeners implements Listener
         Player killer = victim.getKiller();
         HeadDropType headType = killer == null ? HeadDropType.NORMAL : HeadDropType.SLAIN;
 
-        if (victim.hasPermission("headdrops.nodrop")) return;
         if (!configuration.getBoolean(headType.getRootPath() + ".enabled")) return;
         if (configuration.getStringList(headType.getRootPath() + ".disabled_worlds").contains(victim.getWorld().getName())) return;
         if (Math.random() > configuration.getDouble(headType.getChancePath())) return;
