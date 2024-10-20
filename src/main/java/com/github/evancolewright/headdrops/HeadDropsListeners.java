@@ -64,7 +64,7 @@ public final class HeadDropsListeners implements Listener
     public void onHeadPlace(BlockPlaceEvent event)
     {
         ItemStack itemInHand = event.getItemInHand();
-        if (HeadDropsAPI.isPlayerHead(itemInHand))
+        if (!event.isCancelled() && HeadDropsAPI.isPlayerHead(itemInHand))
             this.cacheHandler.addPlayerHeadData(PlayerHeadData.fromPlacedHead(itemInHand, event.getBlockPlaced().getLocation()));
     }
 
